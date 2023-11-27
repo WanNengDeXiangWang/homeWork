@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div style="text-align: center;">
+        <canvas id="cansElem">
+
+        </canvas>
+        <footer>by liu 12204 <br>2023-11-13 </footer>
+    </div>
+
+    <script>
+        var canvas = document.getElementById('cansElem');
+        canvas.width = 900;
+        canvas.height = 600;
+        canvas.style.border = '1px solid #f00';
+
+
+
+        var context = canvas.getContext('2d');
+        context.lineWidth = '3';
+        context.strokeStyle = '#39c5bb';
+
+
+        canvas.onmousedown = function(e) {
+            console.log(canvas.getBoundingClientRect());
+            console.log(e.clientX, e.clientY)
+
+            var x = e.clientX - canvas.getBoundingClientRect().left;
+            var y = e.clientY - canvas.getBoundingClientRect().top;
+            context.beginPath();
+            context.moveTo(x, y);
+
+            canvas.onmousemove = function(event) {
+                console.log("绘图中")
+                var x = event.clientX - canvas.getBoundingClientRect().left;
+                var y = event.clientY - canvas.getBoundingClientRect().top;
+                context.lineTo(x, y);
+                context.stroke();
+            }
+
+            canvas.onmouseup = function() {
+                console.log();
+                canvas.onmousemove = null;
+            }
+
+
+        }
+    </script>
+
+
+</body>
+
+</html>
